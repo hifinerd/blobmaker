@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<body>
+<div style="text-align: center;">
+	<textarea id="inputtext" placeholder="Text" rows="1" style="resize: none;"></textarea>
+	<br>
+	<label>Size <input id="inputsize" type="number" value="30" min="1"></label>
+	<br>
+	<label>Vert. offset <input id="inputoffsety" type="number" value="0"></label>
+	<br>
+	<label>Horiz. offset <input id="inputoffsetx" type="number" value="0"></label>
+	<br>
+	<label>Color <input id="inputcolor" type="color" value="#000000"></label>
+	<br>
+	<label>No <input id="inputno" type="checkbox"></label>
+	<br>
+	<canvas id="canvas" width="128" height="128"></canvas>
+</div>
+
+<img id="img1" src="blobblank1.png" style="display: none;">
+<img id="img2" src="blobblank2.png" style="display: none;">
+<img id="img3" src="blobno.png" style="display: none;">
+<script>
+window.addEventListener("load", redraw);
+document.querySelectorAll("body *").forEach(el => {
+	const id = el.id;
+	if (id) {
+		console.log(`Registering ${id} as variable`);
+		window[id] = el;
+		if (id.startsWith("input")) {
+			console.log(`Adding event listener to ${id}`);
+			el.addEventListener("input", redraw);
+		}
+	}
+});
+const ctx = canvas.getContext("2d");
+function redraw() {
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	ctx.drawImage(img1, 0, 0);
+	ctx.font = `italic bold ${inputsize.value}px 'Comic Sans MS'`;
+	ctx.textAlign = "center";
+	ctx.fillStyle = inputcolor.value;
+	ctx.fillText(inputtext.value, 54 + parseFloat(inputoffsetx.value), 88 + parseFloat(inputoffsety.value));
+	ctx.drawImage(img2, 0, 0);
+	if (inputno.checked) {
+		ctx.drawImage(img3, 0, 0);
+	}
+}
+</script>
+</body>
+</html>
