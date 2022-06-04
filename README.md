@@ -4,3 +4,5 @@ Let Mr. Burguers know I stole this from him. Like, just no mercy, just copied th
 - Text: Put text in the box, it will appear on the blob's sign.
 - Size: Change the size of the text on the blob's sign. Useful for longer words.
 - Offsets: Modifies the position of the text.
+# Installation
+Download the code as a zip, unzip the file, and launch index.html in your favorite browser.
